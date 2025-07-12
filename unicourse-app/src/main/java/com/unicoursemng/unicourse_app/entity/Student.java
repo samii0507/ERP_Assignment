@@ -1,4 +1,4 @@
-package com.unicoursemng.unicourse_app;
+package com.unicoursemng.unicourse_app.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

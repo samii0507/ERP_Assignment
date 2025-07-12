@@ -1,4 +1,4 @@
-package com.unicoursemng.unicourse_app;
+package com.unicoursemng.unicourse_app.repository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
