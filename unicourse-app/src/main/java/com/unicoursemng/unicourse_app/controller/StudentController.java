@@ -1,5 +1,7 @@
 package com.unicoursemng.unicourse_app.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unicoursemng.unicourse_app.entity.Student;
+import com.unicoursemng.unicourse_app.security.JwtUtil;
 import com.unicoursemng.unicourse_app.service.StudentService;
 
 @RestController
@@ -15,11 +18,14 @@ import com.unicoursemng.unicourse_app.service.StudentService;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Student student) {
         try {
-            return ResponseEntity.ok(studentService.registerStudent(student));
+            Student saved = studentService.registerStudent(student);
+            return ResponseEntity.ok(saved);
         } catch (RuntimeException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
@@ -29,7 +35,11 @@ public class StudentController {
     public ResponseEntity<?> login(@RequestBody Student login) {
         try {
             Student student = studentService.login(login.getEmail(), login.getPassword());
-            return ResponseEntity.ok(student);
+            String token = jwtUtil.generateToken(student.getEmail());
+            return ResponseEntity.ok(Map.of(
+                "token", token,
+                "student", student
+            ));
         } catch (RuntimeException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
