@@ -1,10 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+const theme = createTheme({
+  palette: {
+    primary: { main: '#2e7d32' },      // Uni green shade
+    secondary: { main: '#1976d2' },    // blue
+  },
+  shape: { borderRadius: 12 },
+});
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider theme={theme}>
     <App />
-  </StrictMode>,
-)
+  </ThemeProvider>
+);

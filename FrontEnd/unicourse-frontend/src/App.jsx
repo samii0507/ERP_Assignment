@@ -1,13 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import StudentRegistrationForm from "./components/StudentRegistrationForm"; // check path
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthPage from "./components/Auth/AuthPage";
+import CoursesPage from "./components/CoursesPage"; // Create this component
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/register" element={<StudentRegistrationForm />} />
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/courses" element={<CoursesPage />} />
+        {/* Add other routes here */}
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
+
 export default App;

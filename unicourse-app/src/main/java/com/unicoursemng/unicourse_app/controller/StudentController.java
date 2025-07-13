@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unicoursemng.unicourse_app.entity.Student;
 import com.unicoursemng.unicourse_app.security.JwtUtil;
 import com.unicoursemng.unicourse_app.service.StudentService;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
