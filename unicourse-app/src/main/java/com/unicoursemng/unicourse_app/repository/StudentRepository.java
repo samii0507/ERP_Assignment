@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.unicoursemng.unicourse_app.entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
+    // Custom finder for login/registration
+    Student findByEmail(String email);
 }
